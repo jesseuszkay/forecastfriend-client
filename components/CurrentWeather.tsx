@@ -2,19 +2,27 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CustomButton } from ".";
+import axios from "axios";
 
 const CurrentWeather = () => {
-  const [message, setMessage] = useState("Loading...");
-  const [people, setPeople] = useState([]);
+  const [weather, setWeather] = useState({
+    weather: { elevation: 0 },
+    timestamp: 0,
+  });
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/home")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setMessage(data.message);
-        setPeople(data.people);
+    axios.get("http://localhost:8080/weather").then((response) => {
+      setWeather(response.data);
+    });
+
+    const interval = setInterval(() => {
+      axios.get("http://localhost:8080/weather").then((response) => {
+        console.log(response.data.weather);
       });
+    }, 60000);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleScroll = () => {};
@@ -27,10 +35,7 @@ const CurrentWeather = () => {
           Up-to-date accurate weather so you can plan out your week!
         </p>
         <div>
-          <div className="">{message}</div>
-          {people.map((person, index) => (
-            <div key={index}>{person}</div>
-          ))}
+          {weather.weather.elevation} & {weather.timestamp}
         </div>
         <CustomButton
           title="Save Weather"
