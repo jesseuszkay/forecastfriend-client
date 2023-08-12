@@ -17,10 +17,18 @@ module.exports = {
           DEFAULT: "#2B59FF",
           100: "#F5F8FF",
         },
-        "secondary-orange": "#f79761",
+        "secondary-yellow": "#d6c24d",
         "light-white": {
           DEFAULT: "rgba(59,60,152,0.03)",
           100: "rgba(59,60,152,0.02)",
+        },
+        "pause-red": {
+          DEFAULT: "#f55d42",
+          100: "#f55d42",
+        },
+        "resume-green": {
+          DEFAULT: "#91d975",
+          100: "#91d975",
         },
         grey: "#747A88",
       },
