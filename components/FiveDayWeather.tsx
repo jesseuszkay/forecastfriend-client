@@ -1,91 +1,35 @@
 "use client";
-
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { WeatherCard } from ".";
+import { HistoricalCard } from ".";
 
 const FiveDayWeather = () => {
-  const cars = [
+  const [historicalData, setHistoricalData] = useState([
     {
-      id: 1,
-      city_mpg: 2,
-      class: "hi",
-      combination_mpg: 2,
-      cylinders: 2,
-      displacement: 2,
-      drive: "hi",
-      fuel_type: "hi",
-      highway_mpg: 2,
-      make: "hi",
-      model: "hi",
-      transmission: "hi",
-      year: 2,
-      timestamp: "",
+      id: 999,
+      temp_max: 0,
+      temp_min: 0,
+      date: "",
+      weathercode: 0,
     },
-    {
-      id: 2,
-      city_mpg: 2,
-      class: "hi",
-      combination_mpg: 2,
-      cylinders: 2,
-      displacement: 2,
-      drive: "hi",
-      fuel_type: "hi",
-      highway_mpg: 2,
-      make: "hi",
-      model: "hi",
-      transmission: "hi",
-      year: 2,
-      timestamp: "",
-    },
-    {
-      id: 3,
-      city_mpg: 2,
-      class: "hi",
-      combination_mpg: 2,
-      cylinders: 2,
-      displacement: 2,
-      drive: "hi",
-      fuel_type: "hi",
-      highway_mpg: 2,
-      make: "hi",
-      model: "hi",
-      transmission: "hi",
-      year: 2,
-      timestamp: "",
-    },
-    {
-      id: 4,
-      city_mpg: 2,
-      class: "hi",
-      combination_mpg: 2,
-      cylinders: 2,
-      displacement: 2,
-      drive: "hi",
-      fuel_type: "hi",
-      highway_mpg: 2,
-      make: "hi",
-      model: "hi",
-      transmission: "hi",
-      year: 2,
-      timestamp: "",
-    },
-    {
-      id: 5,
-      city_mpg: 2,
-      class: "hi",
-      combination_mpg: 2,
-      cylinders: 2,
-      displacement: 2,
-      drive: "hi",
-      fuel_type: "hi",
-      highway_mpg: 2,
-      make: "hi",
-      model: "hi",
-      transmission: "hi",
-      year: 2,
-      timestamp: "",
-    },
-  ];
+  ]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/historical").then((response) => {
+      const allWeatherData = response.data.daily;
+      const fiveDayWeather = [];
+      for (let i = 0; i < 5; i++) {
+        fiveDayWeather.push({
+          id: i,
+          temp_max: allWeatherData.temperature_2m_max[i],
+          temp_min: allWeatherData.temperature_2m_min[i],
+          date: allWeatherData.time[i],
+          weathercode: allWeatherData.weathercode[i],
+        });
+      }
+      setHistoricalData(fiveDayWeather);
+    });
+  }, []);
 
   return (
     <div>
@@ -94,8 +38,8 @@ const FiveDayWeather = () => {
       </h1>
       <p>Maybe you should have gone outside then...</p>
       <div className="five-day-weather__cards flex">
-        {cars?.map((car) => (
-          <WeatherCard car={car} key={car.id} />
+        {historicalData.map((day) => (
+          <HistoricalCard day={day} key={day.id} />
         ))}
       </div>
     </div>

@@ -7,28 +7,32 @@ export interface CustomButtonProps {
   btnType?: "button" | "submit";
 }
 
-export interface CarCardProps {
-  model: string;
-  make: string;
-  mpg: number;
-  transmission: string;
-  year: number;
-  drive: string;
-  cityMPG: number;
+export interface WeatherCardProps {
+  temperature: number;
+  weathercode: number;
+  latitude: number;
+  longitude: number;
+  timestamp: string;
 }
 
-export interface CarProps {
-  city_mpg: number;
-  class: string;
-  combination_mpg: number;
-  cylinders: number;
-  displacement: number;
-  drive: string;
-  fuel_type: string;
-  highway_mpg: number;
-  make: string;
-  model: string;
-  transmission: string;
-  year: number;
+export interface WeatherProps {
+  temperature: number;
+  weathercode: number;
+  latitude: number;
+  longitude: number;
   timestamp: string;
+}
+
+export interface HistoricalCardProps {
+  temp_max: number;
+  temp_min: number;
+  date: string;
+  weathercode: number;
+}
+
+export interface HistoricalProps {
+  temp_max: number;
+  temp_min: number;
+  date: string;
+  weathercode: number;
 }

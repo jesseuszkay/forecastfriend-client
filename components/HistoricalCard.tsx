@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { WeatherProps } from "@/types";
+import { HistoricalProps } from "@/types";
 
-interface WeatherCardProps {
-  weather: WeatherProps;
+interface HistoricalCardProps {
+  day: HistoricalProps;
 }
 
-const WeatherCard = ({ weather }: WeatherCardProps) => {
-  const { temperature, weathercode, latitude, longitude, timestamp } = weather;
+const WeatherCard = ({ day }: HistoricalCardProps) => {
+  const { temp_max, temp_min, date, weathercode } = day;
 
   return (
     <div className="car-card mr-5">
       <div className="car-card__content">
         <h2 className="car-card__content-title">
-          {temperature} {weathercode}
+          {temp_max} {temp_min}
         </h2>
       </div>
 
@@ -35,7 +35,7 @@ const WeatherCard = ({ weather }: WeatherCardProps) => {
         />
       </div>
 
-      <div className="">Last updated on {timestamp}</div>
+      <div className="">Last updated on {date}</div>
     </div>
   );
 };

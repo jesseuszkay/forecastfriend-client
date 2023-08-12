@@ -1,39 +1,37 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CustomButton, WeatherCard } from ".";
 import axios from "axios";
 
 const CurrentWeather = () => {
   const [weather, setWeather] = useState({
-    weather: { elevation: 0 },
+    temperature: 0,
+    weathercode: 0,
+    latitude: 0,
+    longitude: 0,
     timestamp: "",
   });
 
-  const car = {
-    city_mpg: 2,
-    class: "hi",
-    combination_mpg: 2,
-    cylinders: 2,
-    displacement: 2,
-    drive: "hi",
-    fuel_type: "hi",
-    highway_mpg: 2,
-    make: "hi",
-    model: "hi",
-    transmission: "hi",
-    year: 2,
-    timestamp: weather.timestamp,
-  };
-
   useEffect(() => {
     axios.get("http://localhost:8080/weather").then((response) => {
-      setWeather(response.data);
+      setWeather({
+        temperature: response.data.weather.current_weather.temperature,
+        weathercode: response.data.weather.current_weather.weathercode,
+        latitude: response.data.weather.latitude,
+        longitude: response.data.weather.longitude,
+        timestamp: response.data.timestamp,
+      });
     });
 
     const interval = setInterval(() => {
       axios.get("http://localhost:8080/weather").then((response) => {
-        setWeather(response.data);
+        setWeather({
+          temperature: response.data.weather.current_weather.temperature,
+          weathercode: response.data.weather.current_weather.weathercode,
+          latitude: response.data.weather.latitude,
+          longitude: response.data.weather.longitude,
+          timestamp: response.data.timestamp,
+        });
       });
     }, 60000);
     return () => {
@@ -42,7 +40,6 @@ const CurrentWeather = () => {
   }, []);
 
   const handleScroll = () => {};
-
   return (
     <div className="current-weather">
       <div className="flex-1 pt-36 padding-x">
@@ -52,8 +49,8 @@ const CurrentWeather = () => {
           leave your home.
         </p>
         <div>
-          {weather.weather.elevation} & Last updated on {weather.timestamp}
-          <WeatherCard car={car} />
+          {" "}
+          <WeatherCard weather={weather} />
         </div>
         <div className="flex">
           <CustomButton
