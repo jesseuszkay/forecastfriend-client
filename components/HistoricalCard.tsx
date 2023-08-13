@@ -22,10 +22,9 @@ const HistoricalCard = ({
           <Image
             src={forecastImage}
             alt="forcast image"
-            fill
-            sizes="(max-width: 640px) 100vw, 640px"
+            height={180}
+            width={160}
             priority
-            className="object-contain"
           />
         </div>
 
