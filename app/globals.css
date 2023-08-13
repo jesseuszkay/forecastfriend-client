@@ -47,7 +47,7 @@
 }
 
 .current-weather__subtitle {
-  @apply text-[27px] text-black-100 font-light mt-5;
+  @apply text-[27px] text-black-100 font-light mt-2;
 }
 
 .current-weather__image-container {
@@ -86,72 +86,24 @@
 }
 /* END: Home styles */
 
-/* START: Car Card styles */
-.car-card {
+/* START: Weather Card styles */
+.weather-card {
   @apply flex flex-col p-6 justify-center items-start text-black-100 bg-primary-blue-100 rounded-3xl;
 }
 
-.car-card__content {
-  @apply w-full flex justify-between items-start gap-2;
+.weather-card__content {
+  @apply flex flex-col justify-between items-start gap-2;
 }
 
-.car-card__content-title {
-  @apply text-[22px] leading-[26px] font-bold capitalize;
+.weather-card__content-title {
+  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-bold capitalize;
 }
 
-.car-card__price {
-  @apply flex mt-6 text-[32px] leading-[38px] font-extrabold;
+.weather-card__max-min {
+  @apply 2xl:text-[60px] sm:text-[40px] text-[50px] font-bold capitalize;
 }
 
-.car-card__price-dollar {
-  @apply self-start text-[14px] leading-[17px] font-semibold;
-}
-
-.car-card__price-day {
-  @apply self-end text-[14px] leading-[17px] font-medium;
-}
-
-.car-card__image {
-  @apply relative w-full h-40 my-3 object-contain;
-}
-
-.car-card__icon-container {
-  @apply flex  w-full justify-between text-grey;
-}
-
-.car-card__icon {
-  @apply flex flex-col justify-center items-center gap-2;
-}
-
-.car-card__icon-text {
-  @apply text-[14px] leading-[17px];
-}
-
-/* END: Car Card styles */
-
-/* START: Car Details styles */
-.car-details__dialog-panel {
-  @apply relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5;
-}
-
-.car-details__close-btn {
-  @apply absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full;
-}
-
-.car-details__main-image {
-  @apply relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg;
-}
-/* END: Car Details styles */
-
-/* START: Custom Filter styles */
-.custom-filter__btn {
-  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
-}
-
-.custom-filter__options {
-  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
-}
-/* END: Custom Filter styles */
+/* END: Weather Card styles */
 
 /* START: Footer styles */
 .footer {

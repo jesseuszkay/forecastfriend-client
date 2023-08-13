@@ -10,16 +10,12 @@ export interface CustomButtonProps {
 export interface WeatherCardProps {
   temperature: number;
   weathercode: number;
-  latitude: number;
-  longitude: number;
   timestamp: string;
 }
 
 export interface WeatherProps {
   temperature: number;
   weathercode: number;
-  latitude: number;
-  longitude: number;
   timestamp: string;
 }
 

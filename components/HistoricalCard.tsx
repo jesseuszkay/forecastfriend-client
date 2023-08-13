@@ -9,21 +9,11 @@ const WeatherCard = ({ day }: HistoricalCardProps) => {
   const { temp_max, temp_min, date, weathercode } = day;
 
   return (
-    <div className="car-card mr-5">
-      <div className="car-card__content">
-        <h2 className="car-card__content-title">
-          {temp_max} {temp_min}
-        </h2>
+    <div className="weather-card mb-5 lg:mb-0 lg:mr-5">
+      <div className="">
+        <p className="">{date}</p>
+        <p className="">The weather code was {weathercode}</p>
       </div>
-
-      <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
-        <span className="self-start text-[14px] leading-[17px] font-semibold">
-          $
-        </span>
-        <span className="self-end text-[14px] leading-[17px] font-medium">
-          /day
-        </span>
-      </p>
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
@@ -35,7 +25,18 @@ const WeatherCard = ({ day }: HistoricalCardProps) => {
         />
       </div>
 
-      <div className="">Last updated on {date}</div>
+      <div className="weather-card__content">
+        <div className="">
+          <div className="weather-card__max-temp">
+            <p className="weather-card__subtitle">Max Temperature:</p>
+            <p className="weather-card__max-min">{temp_max}&deg;C</p>
+          </div>
+          <div className="weather-card__min-temp">
+            <p className="weather-card__subtitle">Min Temperature:</p>
+            <p className="weather-card__max-min">{temp_min}&deg;C</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

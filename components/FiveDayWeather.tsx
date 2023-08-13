@@ -32,12 +32,12 @@ const FiveDayWeather = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-extrabold">
+    <div className="w-full">
+      <h1 className="text-4xl font-extrabold mb-3">
         5-day Historical Temperature Chart
       </h1>
-      <p>Maybe you should have gone outside then...</p>
-      <div className="five-day-weather__cards flex">
+      <p className="mb-5">Maybe you should have gone outside back then...</p>
+      <div className="five-day-weather__cards w-full justify-center flex flex-col lg:flex-row ">
         {historicalData.map((day) => (
           <HistoricalCard day={day} key={day.id} />
         ))}

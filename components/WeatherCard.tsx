@@ -6,36 +6,34 @@ interface WeatherCardProps {
 }
 
 const WeatherCard = ({ weather }: WeatherCardProps) => {
-  const { temperature, weathercode, latitude, longitude, timestamp } = weather;
+  const { temperature, weathercode, timestamp } = weather;
 
   return (
-    <div className="car-card mr-5">
-      <div className="car-card__content">
-        <h2 className="car-card__content-title">
-          {temperature} {weathercode}
-        </h2>
+    <div className="weather-card mt-5">
+      <div className="weather-card__content w-full">
+        <div className="weather-card__weather w-full flex justify-between">
+          <div className="weather-card__text">
+            <p className="weather-card__content-title">{temperature}&deg;C.</p>
+
+            <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
+              The weather code is {weathercode}.
+            </p>
+          </div>
+
+          <div className="relative w-80 h-80 my-3 object-contain">
+            <Image
+              src="/hero.png"
+              alt="car model"
+              fill
+              priority
+              className="object-contain"
+            />
+          </div>
+        </div>
+        <div className="weather-card__timestamp">
+          Last updated on {timestamp}
+        </div>
       </div>
-
-      <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
-        <span className="self-start text-[14px] leading-[17px] font-semibold">
-          $
-        </span>
-        <span className="self-end text-[14px] leading-[17px] font-medium">
-          /day
-        </span>
-      </p>
-
-      <div className="relative w-full h-40 my-3 object-contain">
-        <Image
-          src="/hero.png"
-          alt="car model"
-          fill
-          priority
-          className="object-contain"
-        />
-      </div>
-
-      <div className="">Last updated on {timestamp}</div>
     </div>
   );
 };
