@@ -78,6 +78,10 @@ const CurrentWeather = () => {
       });
   };
 
+  if (weather.temperature === 0) {
+    <></>;
+  }
+
   return (
     <div className="current-weather">
       <div className="flex-1 pt-32 padding-x">
@@ -86,18 +90,19 @@ const CurrentWeather = () => {
           Here is the current weather at longitude: {location.longitude}&deg;,
           latitude: {location.latitude}&deg;
         </p>
-        {weather.forecastImage ? (
-          <div className="flex justify-center">
+
+        <div className="flex justify-center">
+          {weather.forecastImage !== "" ? (
             <WeatherCard
               temperature={weather.temperature}
               weatherType={weather.weatherType}
               forecastImage={weather.forecastImage}
               timestamp={weather.timestamp}
             />
-          </div>
-        ) : (
-          <p>No weather data available.</p>
-        )}
+          ) : (
+            <></>
+          )}
+        </div>
 
         <div className="flex justify-center">
           {fetching ? (

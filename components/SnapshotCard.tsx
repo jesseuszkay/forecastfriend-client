@@ -27,8 +27,9 @@ const SnapshotCard = ({
               src={forecastImage}
               alt="forecast image"
               fill
+              sizes="(max-width: 640px) 100vw, 640px"
               priority
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         </div>

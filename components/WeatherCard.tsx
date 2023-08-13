@@ -7,6 +7,10 @@ const WeatherCard = ({
   forecastImage,
   timestamp,
 }: WeatherProps) => {
+  if (temperature === 0) {
+    <></>;
+  }
+
   return (
     <div className="weather-card mt-5">
       <div className="weather-card__content w-full">
@@ -14,7 +18,7 @@ const WeatherCard = ({
           <div className="weather-card__text">
             <p className="weather-card__content-title">{temperature}&deg;C.</p>
             <p className="flex mt-6 text-[20px] sm:text-[32px] sm:leading-[38px] font-extrabold">
-              The forecast is calling for {weatherType}.
+              The forecast is calling for {weatherType.toLowerCase()}.
             </p>
           </div>
 
@@ -23,6 +27,7 @@ const WeatherCard = ({
               src={forecastImage}
               alt="car model"
               fill
+              sizes="(max-width: 640px) 100vw, 640px"
               priority
               className="object-contain"
             />

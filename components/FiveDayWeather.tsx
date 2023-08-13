@@ -39,18 +39,22 @@ const FiveDayWeather = () => {
         Here is the previous 5 days of weather at longitude:{" "}
         {location.longitude}&deg;, latitude: {location.latitude}&deg;
       </p>
-      <div className="five-day-weather__cards w-full justify-center flex flex-row flex-wrap">
-        {historicalData.map((day) => (
-          <HistoricalCard
-            temp_max={day.temp_max}
-            temp_min={day.temp_min}
-            date={day.date}
-            weatherType={day.weatherType}
-            forecastImage={day.forecastImage}
-            key={day.id}
-          />
-        ))}
-      </div>
+      {historicalData[0].forecastImage ? (
+        <div className="five-day-weather__cards w-full justify-center flex flex-row flex-wrap">
+          {historicalData.map((day) => (
+            <HistoricalCard
+              temp_max={day.temp_max}
+              temp_min={day.temp_min}
+              date={day.date}
+              weatherType={day.weatherType}
+              forecastImage={day.forecastImage}
+              key={day.id}
+            />
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

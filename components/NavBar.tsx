@@ -21,30 +21,28 @@ const NavBar = () => {
   ]);
 
   const handleOnClick = () => {
-    setOpenModal(true);
-  };
-
-  useEffect(() => {
     axios
       .get("http://localhost:8080/snapshots")
       .then((response) => {
         setSnapshots(response.data);
       })
+      .then(() => {
+        setOpenModal(true);
+      })
       .catch((error) => {
         console.error("Error fetching weather data:", error);
       });
-  }, []);
+  };
 
   return (
     <header className="w-full absolute z-10">
       <nav className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center sm:px-16 px-6 py-4">
-        <Link href="/" className="flex justify-center items-center">
+        <Link href="/" className="">
           <Image
             src="/logo.png"
             alt="ForecastFriend Logo"
             width={236}
             height={36}
-            className="object-contain"
           />
         </Link>
 
@@ -55,6 +53,7 @@ const NavBar = () => {
           handleClick={handleOnClick}
         />
       </nav>
+
       <Transition.Root show={openModal} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpenModal}>
           <Transition.Child
@@ -90,7 +89,7 @@ const NavBar = () => {
                         >
                           Most Recent Saved Weather Snapshots
                         </Dialog.Title>
-                        {snapshots.length ? (
+                        {snapshots[0].forecastImage ? (
                           <div className="mt-2 flex flex-col w-full">
                             {snapshots.map((snapshot) => (
                               <SnapshotCard
