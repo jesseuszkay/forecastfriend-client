@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "ForecastFriend",
-  description: "Get the best up-to-date weather forecasts!",
+  description: "Get the best up-to-date weather info!",
 };
 
 export default function RootLayout({
