@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { WeatherProps } from "@/types";
+import { SnapshotProps } from "@/types";
 
-const WeatherCard = ({
+const SnapshotCard = ({
   temperature,
   weatherType,
   forecastImage,
   timestamp,
-}: WeatherProps) => {
+}: SnapshotProps) => {
   return (
     <div className="weather-card mt-5">
       <div className="weather-card__content w-full">
@@ -15,11 +15,11 @@ const WeatherCard = ({
             <p className="weather-card__content-title">{temperature}&deg;C.</p>
 
             <p className="flex mt-6 text-[32px] leading-[38px] font-extrabold">
-              The forecast is calling for {weatherType}.
+              {weatherType}
             </p>
           </div>
 
-          <div className="relative w-80 h-80 my-3 object-contain ml-5">
+          <div className="relative w-80 h-80 my-3 object-contain">
             <Image
               src={forecastImage}
               alt="car model"
@@ -37,4 +37,4 @@ const WeatherCard = ({
   );
 };
 
-export default WeatherCard;
+export default SnapshotCard;

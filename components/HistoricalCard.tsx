@@ -1,23 +1,23 @@
 import Image from "next/image";
 import { HistoricalProps } from "@/types";
 
-interface HistoricalCardProps {
-  day: HistoricalProps;
-}
-
-const WeatherCard = ({ day }: HistoricalCardProps) => {
-  const { temp_max, temp_min, date, weathercode } = day;
-
+const WeatherCard = ({
+  temp_max,
+  temp_min,
+  date,
+  weatherType,
+  forecastImage,
+}: HistoricalProps) => {
   return (
     <div className="weather-card mb-5 lg:mb-0 lg:mr-5">
       <div className="">
         <p className="">{date}</p>
-        <p className="">The weather code was {weathercode}</p>
+        <p className="">{weatherType}</p>
       </div>
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
+          src={forecastImage}
           alt="car model"
           fill
           priority

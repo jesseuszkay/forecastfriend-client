@@ -7,28 +7,25 @@ export interface CustomButtonProps {
   btnType?: "button" | "submit";
 }
 
-export interface WeatherCardProps {
-  temperature: number;
-  weathercode: number;
-  timestamp: string;
-}
-
 export interface WeatherProps {
   temperature: number;
-  weathercode: number;
+  weatherType: string;
+  forecastImage: string;
   timestamp: string;
 }
 
-export interface HistoricalCardProps {
-  temp_max: number;
-  temp_min: number;
-  date: string;
-  weathercode: number;
+export interface SnapshotProps {
+  id: number;
+  temperature: number;
+  weatherType: string;
+  forecastImage: string;
+  timestamp: string;
 }
 
 export interface HistoricalProps {
   temp_max: number;
   temp_min: number;
   date: string;
-  weathercode: number;
+  weatherType: string;
+  forecastImage: string;
 }

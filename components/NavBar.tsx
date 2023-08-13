@@ -1,16 +1,24 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import CustomButton from "./CustomButton";
-import { WeatherCard } from ".";
 import axios from "axios";
+import SnapshotCard from "./SnapshotCard";
 
 const NavBar = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [snapshots, setSnapshots] = useState([]);
-  const cancelButtonRef = useRef(null);
+
+  const [snapshots, setSnapshots] = useState([
+    {
+      id: 0,
+      temperature: 0,
+      weatherType: "",
+      forecastImage: "",
+      timestamp: "",
+    },
+  ]);
 
   const handleOnClick = () => {
     setOpenModal(true);
@@ -25,7 +33,7 @@ const NavBar = () => {
       .catch((error) => {
         console.error("Error fetching weather data:", error);
       });
-  });
+  }, []);
 
   return (
     <header className="w-full absolute z-10">
@@ -39,6 +47,7 @@ const NavBar = () => {
             className="object-contain"
           />
         </Link>
+
         <CustomButton
           title="Saved Snapshots"
           btnType="button"
@@ -47,12 +56,7 @@ const NavBar = () => {
         />
       </nav>
       <Transition.Root show={openModal} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-10"
-          initialFocus={cancelButtonRef}
-          onClose={setOpenModal}
-        >
+        <Dialog as="div" className="relative z-10" onClose={setOpenModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -89,7 +93,14 @@ const NavBar = () => {
                         {snapshots.length ? (
                           <div className="mt-2 flex">
                             {snapshots.map((snapshot) => (
-                              <WeatherCard weather={snapshot} />
+                              <SnapshotCard
+                                id={snapshot.id}
+                                temperature={snapshot.temperature}
+                                weatherType={snapshot.weatherType}
+                                forecastImage={snapshot.forecastImage}
+                                timestamp={snapshot.timestamp}
+                                key={snapshot.id}
+                              />
                             ))}
                           </div>
                         ) : (
@@ -103,7 +114,6 @@ const NavBar = () => {
                       type="button"
                       className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
                       onClick={() => setOpenModal(false)}
-                      ref={cancelButtonRef}
                     >
                       Close
                     </button>

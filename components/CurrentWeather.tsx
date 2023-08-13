@@ -3,29 +3,41 @@ import React, { useEffect, useState } from "react";
 import { CustomButton, WeatherCard } from ".";
 import axios from "axios";
 import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { WeatherProps } from "@/types";
 
 const CurrentWeather = () => {
   Notify.init({ position: "left-bottom" });
-  const [weather, setWeather] = useState({
+  const [weather, setWeather] = useState<WeatherProps>({
     temperature: 0,
-    weathercode: 0,
+    weatherType: "",
+    forecastImage: "",
     timestamp: "",
   });
-
   const [fetching, setFetching] = useState(true);
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
 
   const fetchData = () => {
     axios
       .get("http://localhost:8080/weather")
       .then((response) => {
         setWeather({
-          temperature: response.data.weather.current_weather.temperature,
-          weathercode: response.data.weather.current_weather.weathercode,
+          temperature: response.data.temperature,
+          weatherType: response.data.weatherType,
+          forecastImage: response.data.forecastImage,
           timestamp: response.data.timestamp,
         });
       })
       .catch((error) => {
         console.error("Error fetching weather data:", error);
+      });
+
+    axios
+      .get("http://localhost:8080/locations")
+      .then((response) => {
+        setLocation(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching location data:", error);
       });
   };
 
@@ -71,13 +83,23 @@ const CurrentWeather = () => {
       <div className="flex-1 pt-32 padding-x">
         <h1 className="current-weather__title">Check out today's weather!</h1>
         <p className="current-weather__subtitle">
-          Up-to-date accurate weather so you can decide whether you want to
-          leave your home.
+          Here is the current weather at longitude: {location.longitude}&deg;,
+          latitude: {location.latitude}&deg;
         </p>
-        <div>
-          <WeatherCard weather={weather} />
-        </div>
-        <div className="flex">
+        {weather.forecastImage ? (
+          <div className="flex justify-center">
+            <WeatherCard
+              temperature={weather.temperature}
+              weatherType={weather.weatherType}
+              forecastImage={weather.forecastImage}
+              timestamp={weather.timestamp}
+            />
+          </div>
+        ) : (
+          <p>No weather data available.</p>
+        )}
+
+        <div className="flex justify-center">
           {fetching ? (
             <CustomButton
               title="Pause Updates"
