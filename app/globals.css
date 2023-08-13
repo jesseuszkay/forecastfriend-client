@@ -48,12 +48,10 @@
   outline: none;
   border-radius: 4px;
   margin-top: 2px;
-  /* Remove default arrows for number input */
-  -webkit-appearance: none; /* Chrome, Safari, Edge */
-  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
 }
 
-/* Hide spin buttons on WebKit (Chrome, Safari, Edge) */
 .location__input::-webkit-inner-spin-button,
 .location__input::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -109,10 +107,6 @@
 
 .home__filter-container {
   @apply flex justify-start flex-wrap items-center gap-2;
-}
-
-.home__cars-wrapper {
-  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
 }
 
 .home__error-container {
