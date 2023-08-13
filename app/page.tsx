@@ -87,16 +87,17 @@ export default function Home() {
                           <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                             <Dialog.Title
                               as="h3"
-                              className="text-base font-semibold leading-6 text-gray-900"
+                              className="text-[24px] font-semibold leading-6 text-gray-900"
                             >
-                              Enter your longitude and latitude.
+                              Enter your longitude and latitude:
                             </Dialog.Title>
-                            <div className="flex">
+                            <div className="flex mt-3">
                               <label className="location__label">
                                 Longitude
                                 <input
                                   type="number"
                                   name="longitude"
+                                  step="any"
                                   className={
                                     formError
                                       ? "location__input error"
@@ -116,6 +117,7 @@ export default function Home() {
                                 <input
                                   type="number"
                                   name="latitude"
+                                  step="any"
                                   className={
                                     formError
                                       ? "location__input error"

@@ -37,7 +37,7 @@ const NavBar = () => {
 
   return (
     <header className="w-full absolute z-10">
-      <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4">
+      <nav className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center sm:px-16 px-6 py-4">
         <Link href="/" className="flex justify-center items-center">
           <Image
             src="/logo.png"
@@ -51,7 +51,7 @@ const NavBar = () => {
         <CustomButton
           title="Saved Snapshots"
           btnType="button"
-          containerStyles="text-white rounded-full bg-primary-blue min-w-[130px]"
+          containerStyles="text-white rounded-full bg-primary-blue min-w-[130px] mt-5 md:mt-0"
           handleClick={handleOnClick}
         />
       </nav>
@@ -83,7 +83,7 @@ const NavBar = () => {
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                   <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
-                      <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                      <div className="mt-3 w-full">
                         <Dialog.Title
                           as="h3"
                           className="text-base font-semibold leading-6 text-gray-900"
@@ -91,7 +91,7 @@ const NavBar = () => {
                           Most Recent Saved Weather Snapshots
                         </Dialog.Title>
                         {snapshots.length ? (
-                          <div className="mt-2 flex">
+                          <div className="mt-2 flex flex-col w-full">
                             {snapshots.map((snapshot) => (
                               <SnapshotCard
                                 id={snapshot.id}

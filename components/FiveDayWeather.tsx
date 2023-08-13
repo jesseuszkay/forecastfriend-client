@@ -39,7 +39,7 @@ const FiveDayWeather = () => {
         Here is the previous 5 days of weather at longitude:{" "}
         {location.longitude}&deg;, latitude: {location.latitude}&deg;
       </p>
-      <div className="five-day-weather__cards w-full justify-center flex flex-col lg:flex-row ">
+      <div className="five-day-weather__cards w-full justify-center flex flex-row flex-wrap">
         {historicalData.map((day) => (
           <HistoricalCard
             temp_max={day.temp_max}

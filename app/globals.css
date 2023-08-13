@@ -38,6 +38,28 @@
 /* END: General styles */
 
 /* START: location-input styles */
+
+.location__label {
+  color: grey;
+}
+
+.location__input {
+  border: 1px solid lightgray;
+  outline: none;
+  border-radius: 4px;
+  margin-top: 2px;
+  /* Remove default arrows for number input */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Hide spin buttons on WebKit (Chrome, Safari, Edge) */
+.location__input::-webkit-inner-spin-button,
+.location__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .error {
   border: 1px solid red;
 }
@@ -104,11 +126,11 @@
 }
 
 .weather-card__content {
-  @apply flex flex-col justify-between items-start gap-2;
+  @apply flex flex-col justify-between items-center gap-2;
 }
 
 .weather-card__content-title {
-  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-bold capitalize;
+  @apply lg:text-[72px] sm:text-[64px] text-[50px] font-bold capitalize;
 }
 
 .weather-card__max-min {

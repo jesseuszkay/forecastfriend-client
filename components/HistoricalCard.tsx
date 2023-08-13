@@ -8,17 +8,38 @@ const WeatherCard = ({
   weatherType,
   forecastImage,
 }: HistoricalProps) => {
+  function formatDate(dateString: string) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+
+    // Add "st", "nd", "rd", or "th" to day
+    let daySuffix = "th";
+    if (day === 1 || day === 21 || day === 31) {
+      daySuffix = "st";
+    } else if (day === 2 || day === 22) {
+      daySuffix = "nd";
+    } else if (day === 3 || day === 23) {
+      daySuffix = "rd";
+    }
+
+    return `${month} ${day}${daySuffix}, ${year}`;
+  }
+
   return (
-    <div className="weather-card mb-5 lg:mb-0 lg:mr-5">
+    <div className="weather-card  m-2">
       <div className="">
-        <p className="">{date}</p>
-        <p className="">{weatherType}</p>
+        <p className="text-[14px] sm:text-[16px] sm:leading-[18px] font-extrabold">
+          {formatDate(date)}
+        </p>
+        <p className="">Conditions: {weatherType}</p>
       </div>
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
           src={forecastImage}
-          alt="car model"
+          alt="forcast image"
           fill
           priority
           className="object-contain"
