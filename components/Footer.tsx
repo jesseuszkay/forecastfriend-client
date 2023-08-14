@@ -28,8 +28,11 @@ const Footer = () => {
         <p className="text-base text-gray-700">
           <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>{" "}
           <br />
-          ForecastFriend 2023 <br />
-          All Rights Reserved &copy;
+          <a href="https://www.vecteezy.com/free-png/weather">
+            Weather PNGs by Vecteezy
+          </a>
+          <br />
+          ForecastFriend 2023
         </p>
       </div>
     </footer>
