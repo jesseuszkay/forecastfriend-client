@@ -47,7 +47,7 @@ const NavBar = () => {
         </Link>
 
         <CustomButton
-          title="Saved Snapshots"
+          title="View Saved Snapshots"
           btnType="button"
           containerStyles="text-white rounded-full bg-primary-blue min-w-[130px] mt-5 md:mt-0"
           handleClick={handleOnClick}
