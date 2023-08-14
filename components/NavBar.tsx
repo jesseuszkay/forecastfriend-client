@@ -85,11 +85,12 @@ const NavBar = () => {
                       <div className="mt-3 w-full">
                         <Dialog.Title
                           as="h3"
-                          className="text-base font-semibold leading-6 text-gray-900"
+                          className="text-[20px] font-bold leading-6 text-gray-900"
                         >
                           Most Recent Saved Weather Snapshots
                         </Dialog.Title>
-                        {snapshots[0].forecastImage ? (
+                        {snapshots.length &&
+                        snapshots[0].forecastImage !== "" ? (
                           <div className="mt-2 flex flex-col w-full">
                             {snapshots.map((snapshot) => (
                               <SnapshotCard
@@ -103,7 +104,10 @@ const NavBar = () => {
                             ))}
                           </div>
                         ) : (
-                          <></>
+                          <div className="mt-2">
+                            To take a snapshot of the weather, click the "Save
+                            Weather" button below the current weather.
+                          </div>
                         )}
                       </div>
                     </div>
